@@ -113,8 +113,10 @@ namespace TestProject
             //Act
             Book adultBook = library.GetBook(100); //Adult Book
 
+            Exception ex = Assert.Throws<Exception>(() => juniorMember.Borrow(adultBook));
+
             //Assert
-            Assert.Equal($"{adultBook.Title} is unsuitable for children. The request to borrow it has been rejected", juniorMember.Borrow(adultBook));
+            Assert.Equal($"{adultBook.Title} is unsuitable for children. The request to borrow it has been rejected", ex.Message);
         }
     }
 }
