@@ -43,9 +43,12 @@ namespace TestProject
         public void Child_Borrows_Adult_Book_Fails()
         {
             // a junior member (under 16) can borrow only child category books
-            Exception ex = Assert.Throws<Exception>(() => gretaNoFine.Borrow(adultBook));
+            Book adultBook = library.GetBook(100);
+
+            Exception ex = Assert.Throws<Exception>(() => greta.Borrow(adultBook));
 
             Assert.Equal($"{adultBook.Title} is unsuitable for children. The request to borrow it has been rejected", ex.Message);
+        }
 
         [Fact]
         public void Adult_Can_Borrow_Any_Book()
